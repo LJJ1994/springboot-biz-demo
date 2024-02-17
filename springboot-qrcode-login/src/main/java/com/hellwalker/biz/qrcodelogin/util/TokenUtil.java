@@ -48,7 +48,7 @@ public class TokenUtil {
     /**
      * token的密钥
      */
-    private final static String SECRET = "abc123##@45";
+    private final static String SECRET = "abc123aa45";
 
     /**
      * 生成token

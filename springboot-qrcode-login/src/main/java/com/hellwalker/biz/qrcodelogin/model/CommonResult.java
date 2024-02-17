@@ -28,13 +28,37 @@ public class CommonResult {
 
     public CommonResult(Object data) {
         this.msg = "success";
-        this.code = 10001;
+        this.code = 10000;
         this.data = data;
     }
 
     public CommonResult(CodeVO codeVO) {
         this.msg = codeVO.getMessage();
-        this.code = 10001;
+        this.code = 10000;
         this.data = codeVO;
+    }
+
+    public static CommonResult success(Object data) {
+        return new CommonResult("success", 10000, data);
+    }
+
+    public static CommonResult success(String msg) {
+        return new CommonResult(msg, 10000, null);
+    }
+
+    public static CommonResult success(String msg, int code, Object data) {
+        return new CommonResult(msg, code, data);
+    }
+
+    public static CommonResult failed(Object data) {
+        return new CommonResult("failed", 20000, data);
+    }
+
+    public static CommonResult failed(String msg) {
+        return new CommonResult(msg, 20000, null);
+    }
+
+    public static CommonResult failed(String msg, int code, Object data) {
+        return new CommonResult(msg, code, data);
     }
 }

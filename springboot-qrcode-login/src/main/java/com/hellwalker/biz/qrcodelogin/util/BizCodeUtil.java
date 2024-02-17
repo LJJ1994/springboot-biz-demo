@@ -30,8 +30,8 @@ public class BizCodeUtil {
     /**
      * 获取已扫码二维码存储信息
      */
-    public static CodeVO getConfirmingCodeInfo() {
-        return new CodeVO(CodeStatus.CONFIRMING,"二维码扫描成功，等待确认");
+    public static CodeVO getConfirmingCodeInfo(String onceToken, String device) {
+        return new CodeVO(CodeStatus.CONFIRMING,"二维码扫描成功，等待确认", onceToken, device);
     }
 
     /**
