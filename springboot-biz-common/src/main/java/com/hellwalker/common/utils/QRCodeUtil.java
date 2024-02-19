@@ -1,4 +1,4 @@
-package com.hellwalker.biz.qrcodelogin.util;
+package com.hellwalker.common.utils;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;

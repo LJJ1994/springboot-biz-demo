@@ -2,11 +2,11 @@ package com.hellwalker.biz.qrcodelogin.service;
 
 import com.hellwalker.biz.qrcodelogin.model.CodeStatus;
 import com.hellwalker.biz.qrcodelogin.model.CodeVO;
-import com.hellwalker.biz.qrcodelogin.model.CommonResult;
 import com.hellwalker.biz.qrcodelogin.util.BizCodeUtil;
 import com.hellwalker.biz.qrcodelogin.util.RedisKeyUtil;
-import com.hellwalker.biz.qrcodelogin.util.TokenUtil;
-import com.hellwalker.biz.qrcodelogin.util.UUIDUtils;
+import com.hellwalker.common.result.CommonResult;
+import com.hellwalker.common.utils.JwtTokenUtil;
+import com.hellwalker.common.utils.UUIDUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -135,7 +135,7 @@ public class ScanService {
                 }
 
                 // 生成扫描登录成功的token
-                String token = TokenUtil.token(loginUserId);
+                String token = JwtTokenUtil.token(loginUserId);
 
                 //redis二维码状态修改，PC可以获取到
                 CodeVO confirmedCodeInfo = BizCodeUtil.getConfirmedCodeInfo(token);

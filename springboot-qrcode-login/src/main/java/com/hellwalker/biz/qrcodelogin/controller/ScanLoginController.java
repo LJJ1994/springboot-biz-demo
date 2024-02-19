@@ -1,9 +1,9 @@
 package com.hellwalker.biz.qrcodelogin.controller;
 
-import com.hellwalker.biz.qrcodelogin.common.BizException;
-import com.hellwalker.biz.qrcodelogin.model.CommonResult;
 import com.hellwalker.biz.qrcodelogin.service.ScanService;
-import com.hellwalker.biz.qrcodelogin.util.QRCodeUtil;
+import com.hellwalker.common.exception.BizException;
+import com.hellwalker.common.result.CommonResult;
+import com.hellwalker.common.utils.QRCodeUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -1,4 +1,4 @@
-package com.hellwalker.biz.qrcodelogin.util;
+package com.hellwalker.common.utils;
 
 import java.util.UUID;
 

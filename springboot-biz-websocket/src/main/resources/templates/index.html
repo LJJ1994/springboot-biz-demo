@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<h1>WebSocket Demo</h1>
+<div id="messages">
+
+</div>
+
+
+<script>
+    const socket = new WebSocket("ws://localhost:9050/api/my-websocket");
+
+    socket.onopen = function(event) {
+        console.log("WebSocket connection opened.");
+        sendMessage("Hello, WebSocket!");
+    };
+
+
+
+    socket.onmessage = function(event) {
+        console.log("Received message: " + event.data);
+        displayMessage(event.data);
+    };
+
+    socket.onclose = function(event) {
+        console.log("WebSocket connection closed.");
+    };
+
+    function sendMessage(message) {
+        socket.send(message);
+        console.log("Sent message: " + message);
+    }
+
+    function displayMessage(message) {
+        const messagesDiv = document.getElementById("messages");
+        messagesDiv.innerHTML += "<p>" + message + "</p>";
+    }
+</script>
+</body>
+</html>

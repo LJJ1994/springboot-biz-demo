@@ -1,4 +1,4 @@
-package com.hellwalker.biz.qrcodelogin.util;
+package com.hellwalker.common.utils;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
@@ -7,6 +7,7 @@ import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
@@ -39,7 +40,7 @@ import java.util.Map;
  * 然后通过header中声明的加密方式进行加盐secret组合加密，构成了jwt的第三部分
  */
 @Slf4j
-public class TokenUtil {
+public class JwtTokenUtil {
     /**
      * token的失效时间:30天
      */
@@ -64,7 +65,7 @@ public class TokenUtil {
             headers.put("type", "jwt");
             headers.put("alg", "HS256");
             token = JWT.create()
-                    .withClaim("account", userId)
+                    .withClaim("sub", userId)
                     .withExpiresAt(date)
                     .withHeader(headers)
                     .sign(algorithm);
@@ -75,24 +76,49 @@ public class TokenUtil {
     }
 
     /**
-     * token验证
+     * 根据token获取jwt subject, 默认是userId
      *
      * @param token token
-     * @return String
+     * @return String userId
      */
-    public static boolean verify(String token) throws UnsupportedEncodingException {
+    public static String getSubjectFromToken(String token) throws UnsupportedEncodingException {
         try {
             Algorithm algorithm = Algorithm.HMAC256(SECRET);
             JWTVerifier jwtVerifier = JWT.require(algorithm).build();
             DecodedJWT decodedJWT = jwtVerifier.verify(token);
-            // 客户端可以解密 所以一般不建议存放敏感信息
-            log.info("account:" + decodedJWT.getClaim("account").asString());
-            return true;
+
+            String sub = decodedJWT.getClaim("sub").asString();
+            log.info("sub:" + sub);
+            return sub;
         } catch (IllegalArgumentException | JWTVerificationException e) {
+            e.printStackTrace();
+            return "";
+        }
+
+    }
+
+    /**
+     * 验证token
+     * @param token
+     * @return
+     */
+    public static boolean verify(String token) {
+        try {
+            Algorithm algorithm = Algorithm.HMAC256(SECRET);
+            JWTVerifier jwtVerifier = JWT.require(algorithm).build();
+            DecodedJWT decodedJWT = jwtVerifier.verify(token);
+
+            // 验证token是否过期
+            String sub = decodedJWT.getClaim("sub").asString();
+            if (StringUtils.isEmpty(sub)) {
+                return false;
+            }
+            log.info("sub:" + sub);
+            return true;
+        } catch (IllegalArgumentException | JWTVerificationException | UnsupportedEncodingException e) {
             e.printStackTrace();
             return false;
         }
-
     }
 }
 

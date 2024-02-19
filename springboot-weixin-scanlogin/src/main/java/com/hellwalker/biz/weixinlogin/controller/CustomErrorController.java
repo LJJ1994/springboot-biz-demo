@@ -1,4 +1,4 @@
-package com.hellwalker.biz.qrcodelogin.controller;
+package com.hellwalker.biz.weixinlogin.controller;
 
 import com.hellwalker.common.result.CommonResult;
 import org.springframework.boot.web.servlet.error.ErrorAttributes;
@@ -18,22 +18,23 @@ public class CustomErrorController implements ErrorController {
         this.errorAttributes = errorAttributes;
     }
 
+    /**
+     * 返回json格式的错误信息
+     * @return
+     */
     @RequestMapping("/api/error")
     @ResponseBody
-    public CommonResult handleError(WebRequest webRequest, Model model) {
-//        Map<String, Object> errorAttributes = this.errorAttributes.getErrorAttributes(webRequest,
-//                ErrorAttributeOptions.of(Include.STACK_TRACE, Include.MESSAGE, Include.EXCEPTION, Mode.MESSAGE, Output.JSON));
-//
-//        model.addAttribute("status", errorAttributes.get("status"));
-//        model.addAttribute("error", errorAttributes.get("error"));
-//        model.addAttribute("message", errorAttributes.get("message"));
-//        model.addAttribute("timestamp", errorAttributes.get("timestamp"));
-//        model.addAttribute("path", errorAttributes.get("path"));
-//
-//        // You can add additional attributes as needed
-//
-//        return "error"; // Provide the name of your custom error view
+    public CommonResult handleError() {
         return CommonResult.failed("系统错误");
+    }
+
+    /**
+     * 返回错误页面
+     * @return
+     */
+    @RequestMapping("/page/error")
+    public String pageError() {
+        return "page_error";
     }
 
     @Override

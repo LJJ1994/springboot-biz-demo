@@ -1,4 +1,4 @@
-package com.hellwalker.biz.qrcodelogin.common;
+package com.hellwalker.common.exception;
 
 public class BizException extends RuntimeException{
     private String msg;

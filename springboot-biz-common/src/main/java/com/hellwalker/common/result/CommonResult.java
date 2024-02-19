@@ -1,4 +1,4 @@
-package com.hellwalker.biz.qrcodelogin.model;
+package com.hellwalker.common.result;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -30,12 +30,6 @@ public class CommonResult {
         this.msg = "success";
         this.code = 10000;
         this.data = data;
-    }
-
-    public CommonResult(CodeVO codeVO) {
-        this.msg = codeVO.getMessage();
-        this.code = 10000;
-        this.data = codeVO;
     }
 
     public static CommonResult success(Object data) {

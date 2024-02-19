@@ -7,14 +7,20 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="springboot-biz-common" />
+        <module name="springboot-biz-websocket" />
+        <module name="springboot-weixin-scanlogin" />
         <module name="springboot-qrcode-login" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="springboot-biz-common" options="-parameters" />
       <module name="springboot-biz-demo" options="-parameters" />
+      <module name="springboot-biz-websocket" options="-parameters" />
       <module name="springboot-qrcode-login" options="-parameters" />
+      <module name="springboot-weixin-scanlogin" options="-parameters" />
     </option>
   </component>
 </project>

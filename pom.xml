@@ -10,6 +10,9 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>springboot-qrcode-login</module>
+        <module>springboot-weixin-scanlogin</module>
+        <module>springboot-biz-common</module>
+        <module>springboot-biz-websocket</module>
     </modules>
 
     <parent>
@@ -25,6 +28,10 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.auth0</groupId>
             <artifactId>java-jwt</artifactId>

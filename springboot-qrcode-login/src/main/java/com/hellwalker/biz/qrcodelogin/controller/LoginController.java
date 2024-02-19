@@ -1,9 +1,9 @@
 package com.hellwalker.biz.qrcodelogin.controller;
 
-import com.hellwalker.biz.qrcodelogin.model.CommonResult;
 import com.hellwalker.biz.qrcodelogin.model.User;
 import com.hellwalker.biz.qrcodelogin.service.LoginTokenService;
-import com.hellwalker.biz.qrcodelogin.util.UUIDUtils;
+import com.hellwalker.common.result.CommonResult;
+import com.hellwalker.common.utils.UUIDUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -50,7 +50,7 @@ public class LoginController {
         }
         String token = UUIDUtils.generateUUID();
         loginTokenService.setLoginInfo(String.valueOf(userid), token, device);
-        return CommonResult.success("登录成功");
+        return CommonResult.success("登录成功", 20000, token);
     }
 
 

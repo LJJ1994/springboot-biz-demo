@@ -1,6 +1,6 @@
-package com.hellwalker.biz.qrcodelogin.common;
+package com.hellwalker.common.exception;
 
-import com.hellwalker.biz.qrcodelogin.model.CommonResult;
+import com.hellwalker.common.result.CommonResult;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
